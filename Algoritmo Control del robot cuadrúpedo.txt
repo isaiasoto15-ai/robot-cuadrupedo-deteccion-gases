@@ -1,0 +1,48 @@
+Algoritmo Control del robot cuadrúpedo (ESP32cam)
+
+— CONFIGURACIÓN (setup) —
+
+1:  Incluir librerías: Servo.h, Wire.h, Adafruit_PWMServoDriver.h
+2:  Declarar 9 servos (pines 2–10): 8 patas + 1 cuello
+3:  Definir home[9] ← {120, 15, 60, 165, 100, 15, 70, 165}
+4:  Definir pin_MQ4, umbral_gas, trigPin, echoPin
+5:  for all servo i do
+6:      servo[i].attach(pin[i]); servo[i].write(home[i])
+7:  end for
+8:  Iniciar comunicación serial y configurar pines de E/S
+
+— BUCLE PRINCIPAL (loop) —
+
+9:  loop
+10:     FORWARD                                      ▷ Avanzar de forma continua
+11:     d ← MEDIRULTRASONICO
+12:     if d < umbral_distancia then
+13:         cuelloIZQUIERDA; d_izq ← MEDIRULTRASONICO
+14:         cuelloDERECHA; d_der ← MEDIRULTRASONICO
+15:         if d_izq > d_der then
+16:             GIRARIZQUIERDA
+17:         else
+18:             GIRARDERECHA
+19:         end if
+20:         cuelloCENTRO
+21:     end if
+22:     g ← analogRead(pin_MQ4)
+23:     if g > umbral_gas then
+24:         DETENER
+25:         Enviar alerta por serial y WiFi
+26:     end if
+27: end loop
+
+— FUNCIONES DE MOVIMIENTO —
+
+28: function FORWARD
+29:     Elevar patas diagonales → avanzar → apoyar (ciclo coordinado)
+30: end function
+
+31: function GIRARDERECHA / GIRARIZQUIERDA
+32:     Ajustar cadencia de patas laterales para cambiar dirección
+33: end function
+
+34: function DETENER
+35:     Regresar todos los servos a home[]
+36: end function
