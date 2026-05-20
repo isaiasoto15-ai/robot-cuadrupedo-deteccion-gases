@@ -1,0 +1,18 @@
+LISTADO DE MATERIALES
+
+1:  ESP32-CAM.
+2:  Sensor de gas MQ-4.
+3:  Sensor ultrasónico.
+4:  Cámara OV2640 integrada en ESP32-CAM.
+5:  8 servomotores SG90 / MG90S.
+6:  Módulo controlador PCA9685.
+7:  Caja de baterías.
+8:  2 baterías 18650.
+9:  Switch de encendido.
+10: Jumpers para conexiones.
+11: Tornillos de sujeción.
+12: Conectores para placa.
+13: Adaptador FTDI para programación.
+14: Piezas estructurales impresas en 3D.
+15: Gomas antiderrapantes para las patas.
+16: Componentes electrónicos auxiliares.
